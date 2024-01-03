@@ -18,8 +18,8 @@
 @_implementationOnly import CCryptoBoringSSLShims
 import Foundation
 
-enum OpenSSLChaChaPolyImpl {
-    static func encrypt<M: DataProtocol, AD: DataProtocol>(key: SymmetricKey, message: M, nonce: ChaChaPoly.Nonce?, authenticatedData: AD?) throws -> ChaChaPoly.SealedBox {
+public enum OpenSSLChaChaPolyImpl {
+    public static func encrypt<M: DataProtocol, AD: DataProtocol>(key: SymmetricKey, message: M, nonce: ChaChaPoly.Nonce?, authenticatedData: AD?) throws -> ChaChaPoly.SealedBox {
         guard key.bitCount == ChaChaPoly.keyBitsCount else {
             throw CryptoKitError.incorrectKeySize
         }
@@ -36,7 +36,7 @@ enum OpenSSLChaChaPolyImpl {
         return try ChaChaPoly.SealedBox(nonce: nonce, ciphertext: ciphertext, tag: tag)
     }
 
-    static func decrypt<AD: DataProtocol>(key: SymmetricKey, ciphertext: ChaChaPoly.SealedBox, authenticatedData: AD?) throws -> Data {
+    public static func decrypt<AD: DataProtocol>(key: SymmetricKey, ciphertext: ChaChaPoly.SealedBox, authenticatedData: AD?) throws -> Data {
         guard key.bitCount == ChaChaPoly.keyBitsCount else {
             throw CryptoKitError.incorrectKeySize
         }

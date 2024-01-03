@@ -73,7 +73,7 @@ extension Curve25519.Signing.PublicKey {
 
 extension Curve25519.Signing.PrivateKey {
     @inlinable
-    func openSSLSignature<D: DataProtocol>(for data: D) throws -> Data {
+    public func openSSLSignature<D: DataProtocol>(for data: D) throws -> Data {
         if data.regions.count == 1 {
             return try self.openSSLSignature(forContiguousData: data.regions.first!)
         } else {
